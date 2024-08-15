@@ -42,7 +42,7 @@ public class validadores {
 
     public static void pausa(){
         Scanner scanner = new Scanner(System.in);
-        System.out.printf("Presiona Enter para continuar");
+        System.out.printf("Presiona Enter para continuar...");
         scanner.nextLine();
     }
 }

@@ -49,47 +49,85 @@ public class ConsoleAdapterModoAdministracion {
             switch (opcion) {
                 case 1:
                     validadores.limpiarConsola();
-                    System.out.println("ingrese el nombre del modo de administracion: ");
-                    String nombre = scanner.nextLine();
+                    try {
+                        System.out.println("ingrese el nombre del modo de administracion: ");
+                        String nombre = scanner.nextLine();
+                        ModoAdministracion ModoAdministracion = new ModoAdministracion(nombre);
+                        createmodo.execute(ModoAdministracion);
+                        
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        System.out.println("");
+                        System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELEVE A INTENTARLO");                
+                        validadores.pausa();
+                        StartModoAdministracion();
+                    }
                     
-                    ModoAdministracion ModoAdministracion = new ModoAdministracion(nombre);
-                    createmodo.execute(ModoAdministracion);
                     validadores.pausa();
                     validadores.limpiarConsola();
                     
                     break;
                 case 2:
                     validadores.limpiarConsola();
-                    System.out.println("ingresa el codigo del modo de administracion");
-                    int codigoDel = scanner.nextInt();
-                    delmodo.execute(codigoDel);
+                    try {
+                        System.out.println("ingresa el codigo del modo de administracion");
+                        int codigoDel = scanner.nextInt();
+                        delmodo.execute(codigoDel);
+                        
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        System.out.println("");
+                        System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELEVE A INTENTARLO");                
+                        validadores.pausa();
+                        StartModoAdministracion();
+                    }
+                    
                     validadores.pausa();
                     validadores.limpiarConsola();
 
                     break;
                 case 3:
-                    validadores.limpiarConsola();
-                    System.out.println("ingresa el codigo del modo de administracion");
-                    int codigoUPd = scanner.nextInt();
-
-                    updmodo.execute(codigoUPd);
+                    try {
+                        validadores.limpiarConsola();
+                        System.out.println("ingresa el codigo del modo de administracion");
+                        int codigoUPd = scanner.nextInt();
+                        updmodo.execute(codigoUPd);
+                        
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        System.out.println("");
+                        System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELEVE A INTENTARLO");                
+                        validadores.pausa();
+                        StartModoAdministracion();
+                    }
+                    
                     validadores.pausa();
                     validadores.limpiarConsola();
                     
                     break;
                 case 4:
-                    validadores.limpiarConsola();
-                    System.out.println("ingresa el codigo del modo de administracion");
-                    int codigoID = scanner.nextInt();
+                    try {
+                        validadores.limpiarConsola();
+                        System.out.println("ingresa el codigo del modo de administracion");
+                        int codigoID = scanner.nextInt();
 
-                    Optional<ModoAdministracion> td = idmodo.execute(codigoID);
-                    
-                    if (td.isPresent()) {
-                        ModoAdministracion ptd = td.get();
-                        System.out.println("Id: " + ptd.getIdma() + " NOMBRE: " + ptd.getDescripcion());
-                    } else {
-                        System.out.println("modo de administracion no encontrado.");
+                        Optional<ModoAdministracion> td = idmodo.execute(codigoID);
+                        if (td.isPresent()) {
+                            ModoAdministracion ptd = td.get();
+                            System.out.println("Id: " + ptd.getIdma() + " NOMBRE: " + ptd.getDescripcion());
+                        } else {
+                            System.out.println("modo de administracion no encontrado.");
+                        }
+                        
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        System.out.println("");
+                        System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELEVE A INTENTARLO");                
+                        validadores.pausa();
+                        StartModoAdministracion();
                     }
+
+                    
                     validadores.pausa();
                     validadores.limpiarConsola();
                     

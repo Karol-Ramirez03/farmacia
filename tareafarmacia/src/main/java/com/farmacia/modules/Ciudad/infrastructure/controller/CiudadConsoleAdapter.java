@@ -46,6 +46,7 @@ public class CiudadConsoleAdapter {
         validadores.limpiarConsola();
 
         while (Bandera) {
+            validadores.limpiarConsola();
             System.out.println(titulo);
             System.out.println("1. añadir Ciudad \n2. eliminar Ciudad \n3. actualizar Ciudad \n4. buscar por id \n5. listar Ciudad\n6. salir");
             int opcion = validadores.rangeValidator(1, 6);
