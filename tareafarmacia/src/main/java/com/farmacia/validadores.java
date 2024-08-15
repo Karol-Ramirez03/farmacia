@@ -22,4 +22,25 @@ public class validadores {
             }
         } while (true);
     }
+
+    public static void limpiarConsola() {
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                // Para sistemas Windows
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                // Para sistemas Unix/Linux/MacOS
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+            }
+        } catch (Exception e) {
+            System.out.println("Error al borrar la consola.");
+        }
+    }
+
+    public static void pausa(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.printf("Presiona Enter para continuar");
+        scanner.nextLine();
+    }
 }

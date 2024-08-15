@@ -15,6 +15,21 @@ public class Medicina {
 
 
     
+    public Medicina(String proceedings, String nombre, String registroMedico, String descripcion,
+            String descripcionCorto, String nombreRol, int codigoModoAdmin, int codigoPrincActivo,
+            int codigoUnidadMedida, int codigoLab) {
+        this.proceedings = proceedings;
+        this.nombre = nombre;
+        this.registroMedico = registroMedico;
+        this.descripcion = descripcion;
+        this.descripcionCorto = descripcionCorto;
+        this.nombreRol = nombreRol;
+        this.codigoModoAdmin = codigoModoAdmin;
+        this.codigoPrincActivo = codigoPrincActivo;
+        this.codigoUnidadMedida = codigoUnidadMedida;
+        this.codigoLab = codigoLab;
+    }
+
     public Medicina(int id, String proceedings, String nombre, String registroMedico, String descripcion,
             String descripcionCorto, String nombreRol, int codigoModoAdmin, int codigoPrincActivo,
             int codigoUnidadMedida, int codigoLab) {

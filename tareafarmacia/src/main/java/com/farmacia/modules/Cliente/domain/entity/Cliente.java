@@ -1,6 +1,6 @@
 package com.farmacia.modules.Cliente.domain.entity;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Cliente {
     private String idCliente;
@@ -11,7 +11,18 @@ public class Cliente {
     private Date birthdate;
     private float lon;
     private float latitud;
+
     
+    
+    public Cliente(String idCliente, String nombreCliente, String lastNombreCliente, String codigoCiudadCliente,
+            String emailCliente) {
+        this.idCliente = idCliente;
+        this.nombreCliente = nombreCliente;
+        this.lastNombreCliente = lastNombreCliente;
+        this.codigoCiudadCliente = codigoCiudadCliente;
+        this.emailCliente = emailCliente;
+    }
+
     public Cliente(String idCliente, String nombreCliente, String lastNombreCliente, String codigoCiudadCliente,
             String emailCliente, Date birthdate, float lon, float latitud) {
         this.idCliente = idCliente;
