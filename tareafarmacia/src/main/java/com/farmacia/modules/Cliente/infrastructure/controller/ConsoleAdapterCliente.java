@@ -54,7 +54,9 @@ public class ConsoleAdapterCliente {
 
             switch (opcion) {
                 case 1:
-                    validadores.limpiarConsola();
+
+                    try {
+                        validadores.limpiarConsola();
                     System.out.println("ingrese el nombre de la Cliente: ");
                     String nombrecliente = scanner.nextLine();
                     System.out.println("ingresa el id de la Cliente");
@@ -86,120 +88,159 @@ public class ConsoleAdapterCliente {
 
                     System.out.println("");
                     System.out.println("cliente creado con exito!");
+                        
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        System.out.println("");
+                        System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELEVE A INTENTARLO");                
+                        validadores.pausa();
+                        StartCliente();
+                    }
+                    
                     validadores.pausa();
                     validadores.limpiarConsola();
                     
                     break;
                 case 2:
+                try {
                     validadores.limpiarConsola();
                     System.out.println("ingresa el id del Cliente");
                     String codigoDel = scanner.nextLine();
                     delCliente.execute(codigoDel);
                     System.out.println("");
                     System.out.println("cliente eliminado con exito");
+                    
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    System.out.println("");
+                    System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELEVE A INTENTARLO");                
+                    validadores.pausa();
+                    StartCliente();
+                }
+                    
                     validadores.pausa();
                     validadores.limpiarConsola();
 
                     break;
 
                 case 3:
-                    validadores.limpiarConsola();
-                    System.out.println("ingresa el id del Cliente");
-                    String codigoUPd = scanner.nextLine();
-
-                    Optional<Cliente> ClienteExistente = idCliente.execute(codigoUPd);
-                    if (!ClienteExistente.isPresent()) {
-                        System.out.println("Cliente no encontrado.");
-                        break;
-                    }
-                    Cliente ClienteActual = ClienteExistente.get();
-                    boolean actualizar = true;
-
-                    while (actualizar) {
+                    try {
                         validadores.limpiarConsola();
-                        System.out.println("Seleccione el campo a actualizar:");
-                        System.out.println("1. Nombre");
-                        System.out.println("2. apellido");
-                        System.out.println("3. codigo ciudad");
-                        System.out.println("4. email");
-                        System.out.println("5. fecha nacimiento");
-                        System.out.println("6. longitud ");
-                        System.out.println("7. latitud ");
-                        System.out.println("8. Terminar Actualizacion ");
+                        System.out.println("ingresa el id del Cliente");
+                        String codigoUPd = scanner.nextLine();
 
-
-
-                        int campo = validadores.rangeValidator(1, 8);
-
-                        switch (campo) {
-                            case 1:
-                                System.out.print("Ingrese el nuevo nombre: ");
-                                ClienteActual.setNombreCliente(scanner.nextLine());
-                                
-                                break;
-                            case 2:
-                                System.out.print("Ingrese el nuevo apellido: ");
-                                ClienteActual.setLastNombreCliente(scanner.nextLine());
-                                break;
-                            case 3:
-                                System.out.print("Ingrese el nuevo codigo de ciudad: ");
-                                ClienteActual.setCodigoCiudadCliente(scanner.nextLine());
-                                break;
-                            case 4:
-                                System.out.print("Ingrese el nuevo email: ");
-                                ClienteActual.setEmailCliente(scanner.nextLine());
-                                break;
-                            case 5:
-                                System.out.print("Ingrese la fecha de nacimiento correctamente: ");
-                                String fechabirt = scanner.nextLine();
-                                Date nacio = null;
-                                    
-                                try {
-                                    nacio = dateFormat.parse(fechabirt);
-                                } catch (ParseException e) {
-                                    e.printStackTrace();
-                                    System.out.println("Formato de fecha inválido. Por favor, use el formato dd/MM/yyyy.");
-                                }
-                                
-                                ClienteActual.setBirthdate(nacio);
-                                break;
-                            case 6:
-                                System.out.print("Ingrese la longitud: ");
-                                ClienteActual.setLon(scanner.nextFloat());
-                                break;
-                            case 7:
-                                System.out.print("Ingrese la latitud ");
-                                ClienteActual.setLatitud(scanner.nextFloat());
-                                break;
-                            case 8:
-                                actualizar = false;
-                                break;
-                            default:
-                                System.out.println("Opción inválida, intente de nuevo.");
+                        Optional<Cliente> ClienteExistente = idCliente.execute(codigoUPd);
+                        if (!ClienteExistente.isPresent()) {
+                            System.out.println("Cliente no encontrado.");
+                            break;
                         }
+                        Cliente ClienteActual = ClienteExistente.get();
+                        boolean actualizar = true;
+
+                        while (actualizar) {
+                            validadores.limpiarConsola();
+                            System.out.println("Seleccione el campo a actualizar:");
+                            System.out.println("1. Nombre");
+                            System.out.println("2. apellido");
+                            System.out.println("3. codigo ciudad");
+                            System.out.println("4. email");
+                            System.out.println("5. fecha nacimiento");
+                            System.out.println("6. longitud ");
+                            System.out.println("7. latitud ");
+                            System.out.println("8. Terminar Actualizacion ");
+
+
+
+                            int campo = validadores.rangeValidator(1, 8);
+
+                            switch (campo) {
+                                case 1:
+                                    System.out.print("Ingrese el nuevo nombre: ");
+                                    ClienteActual.setNombreCliente(scanner.nextLine());
+                                    
+                                    break;
+                                case 2:
+                                    System.out.print("Ingrese el nuevo apellido: ");
+                                    ClienteActual.setLastNombreCliente(scanner.nextLine());
+                                    break;
+                                case 3:
+                                    System.out.print("Ingrese el nuevo codigo de ciudad: ");
+                                    ClienteActual.setCodigoCiudadCliente(scanner.nextLine());
+                                    break;
+                                case 4:
+                                    System.out.print("Ingrese el nuevo email: ");
+                                    ClienteActual.setEmailCliente(scanner.nextLine());
+                                    break;
+                                case 5:
+                                    System.out.print("Ingrese la fecha de nacimiento correctamente: ");
+                                    String fechabirt = scanner.nextLine();
+                                    Date nacio = null;
+                                        
+                                    try {
+                                        nacio = dateFormat.parse(fechabirt);
+                                    } catch (ParseException e) {
+                                        e.printStackTrace();
+                                        System.out.println("Formato de fecha inválido. Por favor, use el formato dd/MM/yyyy.");
+                                    }
+                                    
+                                    ClienteActual.setBirthdate(nacio);
+                                    break;
+                                case 6:
+                                    System.out.print("Ingrese la longitud: ");
+                                    ClienteActual.setLon(scanner.nextFloat());
+                                    break;
+                                case 7:
+                                    System.out.print("Ingrese la latitud ");
+                                    ClienteActual.setLatitud(scanner.nextFloat());
+                                    break;
+                                case 8:
+                                    actualizar = false;
+                                    break;
+                                default:
+                                    System.out.println("Opción inválida, intente de nuevo.");
+                            }
+                        }
+                        updCliente.execute(ClienteActual);
+                        System.out.println("");
+                        System.out.println("cliente actualizado con exito!");
+                        
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        System.out.println("");
+                        System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELEVE A INTENTARLO");                
+                        validadores.pausa();
+                        StartCliente();
                     }
-                    updCliente.execute(ClienteActual);
-                    System.out.println("");
-                    System.out.println("cliente actualizado con exito!");
+                    
                     validadores.pausa();
                     validadores.limpiarConsola();
                     
                     break;
                 case 4:
-                    validadores.limpiarConsola();
-                    System.out.println("ingresa el codigo de la Cliente");
-                    String codigoID = scanner.nextLine();
+                    try {
+                        validadores.limpiarConsola();
+                        System.out.println("ingresa el codigo de la Cliente");
+                        String codigoID = scanner.nextLine();
 
-                    Optional<Cliente> td = idCliente.execute(codigoID);
-                    
-                    if (td.isPresent()) {
-                        Cliente ptd = td.get();
+                        Optional<Cliente> td = idCliente.execute(codigoID);
+                        
+                        if (td.isPresent()) {
+                            Cliente ptd = td.get();
+                            System.out.println("");
+                            System.out.println("Id: " + ptd.getIdCliente() + " NOMBRE: " + ptd.getNombreCliente() + " APELLIDOS: " + ptd.getLastNombreCliente() + " EMAIL: " + ptd.getEmailCliente()+" CODIGO CIUDAD" + ptd.getCodigoCiudadCliente());
+                            System.out.println("");
+                        } else {
+                            System.out.println("Cliente no encontrado.");
+                        }
+                        
+                    } catch (Exception e) {
+                        e.printStackTrace();
                         System.out.println("");
-                        System.out.println("Id: " + ptd.getIdCliente() + " NOMBRE: " + ptd.getNombreCliente() + " APELLIDOS: " + ptd.getLastNombreCliente() + " EMAIL: " + ptd.getEmailCliente()+" CODIGO CIUDAD" + ptd.getCodigoCiudadCliente());
-                        System.out.println("");
-                    } else {
-                        System.out.println("Cliente no encontrado.");
+                        System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELEVE A INTENTARLO");                
+                        validadores.pausa();
+                        StartCliente();
                     }
+                    
                     validadores.pausa();
                     validadores.limpiarConsola();
                     
