@@ -50,45 +50,68 @@ public class ConsoleAdapterMedicina {
 
             switch (opcion) {
                 case 1:
-                    System.out.println("ingrese el proceedings: ");
-                    String proceedings = scanner.nextLine();
-                    System.out.println("ingresa el nombre de la medicina");
-                    String nombre = scanner.nextLine();
-                    System.out.println("ingresa el registro Medico de la medicina");
-                    String registroMedico = scanner.nextLine();
-                    System.out.println("ingresa una descripcion breve del medicina");
-                    String descripcionCorto = scanner.nextLine();
-                    System.out.println("ingresa una descripcion mas detallada de la  medicina");
-                    String descripcion = scanner.nextLine();
-                    System.out.println("ingresa el nameRol del medicamento");
-                    String nombreRol = scanner.nextLine();
-                    System.out.println("ingresa el codigo del Modo de Administracion del medicamento");
-                    int codigoModoAdmin = scanner.nextInt();
-                    System.out.println("ingresa el codigo del Principio Activo del medicamento");
-                    int codigoPrincActivo = scanner.nextInt();
-                    System.out.println("ingresa el codigo de Unidad de Medida del medicamento");
-                    int codigoUnidadMedida = scanner.nextInt();
-                    System.out.println("ingresa el codigo del Laboratorio del medicamento");
-                    int codigoLab = scanner.nextInt();
+                    try {
+                        validadores.limpiarConsola();
+                        System.out.println("ingrese el proceedings: ");
+                        String proceedings = scanner.nextLine();
+                        System.out.println("ingresa el nombre de la medicina");
+                        String nombre = scanner.nextLine();
+                        System.out.println("ingresa el registro Medico de la medicina");
+                        String registroMedico = scanner.nextLine();
+                        System.out.println("ingresa una descripcion breve del medicina");
+                        String descripcionCorto = scanner.nextLine();
+                        System.out.println("ingresa una descripcion mas detallada de la  medicina");
+                        String descripcion = scanner.nextLine();
+                        System.out.println("ingresa el nameRol del medicamento");
+                        String nombreRol = scanner.nextLine();
+                        System.out.println("ingresa el codigo del Modo de Administracion del medicamento");
+                        int codigoModoAdmin = scanner.nextInt();
+                        System.out.println("ingresa el codigo del Principio Activo del medicamento");
+                        int codigoPrincActivo = scanner.nextInt();
+                        System.out.println("ingresa el codigo de Unidad de Medida del medicamento");
+                        int codigoUnidadMedida = scanner.nextInt();
+                        System.out.println("ingresa el codigo del Laboratorio del medicamento");
+                        int codigoLab = scanner.nextInt();
 
-                    Medicina medicina = new Medicina(proceedings, nombre, registroMedico, descripcion, descripcionCorto, nombreRol, codigoModoAdmin, codigoPrincActivo, codigoUnidadMedida, codigoLab);
-                    createMed.execute(medicina);
+                        Medicina medicina = new Medicina(proceedings, nombre, registroMedico, descripcion, descripcionCorto, nombreRol, codigoModoAdmin, codigoPrincActivo, codigoUnidadMedida, codigoLab);
+                        createMed.execute(medicina);
+                        
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        System.out.println("");
+                        System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELVE A INTENTARLO");                
+                        validadores.pausa();
+                        StartMedicina();
+                    }
+                    
                     validadores.pausa();
                     validadores.limpiarConsola();
                     
                     break;
                 case 2:
-                    validadores.limpiarConsola();
-                    System.out.println("ingresa el id del medicamento");
-                    int iddel = scanner.nextInt();
-                    delmed.execute(iddel);
+                    try {
+                        validadores.limpiarConsola();
+                        System.out.println("ingresa el id del medicamento");
+                        int iddel = scanner.nextInt();
+                        delmed.execute(iddel);
+                        
+                    } catch (Exception e) {
+                            e.printStackTrace();
+                            System.out.println("");
+                            System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELVE A INTENTARLO");                
+                            validadores.pausa();
+                            StartMedicina();
+                    }
+                    
                     validadores.pausa();
                     validadores.limpiarConsola();
                     
                     break;
                 case 3:
+
+                    try {
                     validadores.limpiarConsola();
-                    System.out.println("ingrese el id del medicamento para acctualizar");
+                    System.out.println("ingrese el id del medicamento para actualizar");
                     int idupd = scanner.nextInt();
                     Optional<Medicina> medicinaActulizar = idmed.execute(idupd);
 
@@ -101,6 +124,7 @@ public class ConsoleAdapterMedicina {
                     boolean run = true;
 
                     while (run) {
+                        validadores.limpiarConsola();
                         System.out.println("ingresa la opcion que desea actualizar");
                         System.out.println("1. proceedings \n2. nombre \n3. registroMedico \n4. descripcion \n5. descripcion Corta\n6. nombreRol\n7. codigo del Modo de Administracion \n8. codigo del Principio Activo\n9. codigo de Unidad de Medida\n10. codigo del Laboratorio\n11. salir");
                         int opcionact =  validadores.rangeValidator(1,11);
@@ -163,22 +187,42 @@ public class ConsoleAdapterMedicina {
                         
                     }
                     updmed.execute(medicamentoActual);
+                        
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        System.out.println("");
+                        System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELVE A INTENTARLO");                
+                        validadores.pausa();
+                        StartMedicina();
+                    }
+                    
                     validadores.pausa();
                     validadores.limpiarConsola();
                     break;
                 case 4:
-                    validadores.limpiarConsola();
-                    System.out.println("ingresa el codigo de la Medicina");
-                    int codigoID = scanner.nextInt();
 
-                    Optional<Medicina> td = idmed.execute(codigoID);
-                    
-                    if (td.isPresent()) {
-                        Medicina ptd = td.get();
-                        System.out.println("Proceedings: " + ptd.getProceedings() + " NOMBRE: " + ptd.getNombre() + " REGISTRO MEDICO: " + ptd.getRegistroMedico() + " DESCRIPCION: " + ptd.getDescripcion() +" RESUMEN: " + ptd.getDescripcionCorto()+" NOMBRE ROL:"+ ptd.getNombreRol() + " CODIGO MODO DE ADMINISTRACION: " + ptd.getCodigoModoAdmin() + " CODIGO PRINCIPIO ACTIVO: "+ ptd.getCodigoPrincActivo() + " CODIGO UNIDAD MEDIDA: "+ ptd.getCodigoUnidadMedida()+" CODIGO DEL LABORATORIO: "+ ptd.getCodigoLab());
-                    } else {                                                                                                                                                                                                                                                                                                         
-                        System.out.println("Medicina no encontrado.");
+                    try {
+                        validadores.limpiarConsola();
+                        System.out.println("ingresa el codigo de la Medicina");
+                        int codigoID = scanner.nextInt();
+
+                        Optional<Medicina> td = idmed.execute(codigoID);
+                        
+                        if (td.isPresent()) {
+                            Medicina ptd = td.get();
+                            System.out.println("Proceedings: " + ptd.getProceedings() + " NOMBRE: " + ptd.getNombre() + " REGISTRO MEDICO: " + ptd.getRegistroMedico() + " DESCRIPCION: " + ptd.getDescripcion() +" RESUMEN: " + ptd.getDescripcionCorto()+" NOMBRE ROL:"+ ptd.getNombreRol() + " CODIGO MODO DE ADMINISTRACION: " + ptd.getCodigoModoAdmin() + " CODIGO PRINCIPIO ACTIVO: "+ ptd.getCodigoPrincActivo() + " CODIGO UNIDAD MEDIDA: "+ ptd.getCodigoUnidadMedida()+" CODIGO DEL LABORATORIO: "+ ptd.getCodigoLab());
+                        } else {                                                                                                                                                                                                                                                                                                         
+                            System.out.println("Medicina no encontrado.");
+                        }
+                        
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        System.out.println("");
+                        System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELVE A INTENTARLO");                
+                        validadores.pausa();
+                        StartMedicina();
                     }
+                    
                     validadores.pausa();
                     validadores.limpiarConsola();
                     

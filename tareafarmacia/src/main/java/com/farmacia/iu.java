@@ -19,7 +19,6 @@ public class iu {
             
             █▀▀ ▄▀█ █▀█ █▀▄▀█ ▄▀█ █▀▀ █ ▄▀█
             █▀░ █▀█ █▀▄ █░▀░█ █▀█ █▄▄ █ █▀█
-
     """;
     public static void menuPrincipal(){
         System.out.println(titulo);
@@ -29,7 +28,6 @@ public class iu {
         while (exit) {
             validadores.limpiarConsola();
             System.out.println(titulo);
-            System.out.println("=== Menú Principal ===");
             System.out.println("1. Menú País");
             System.out.println("2. Menú Ciudad");
             System.out.println("3. Menú Región");
@@ -42,6 +40,7 @@ public class iu {
             System.out.println("10. Menú Laboratorio");
             System.out.println("11. Menú Farmacia Medicina");
             System.out.println("12. Salir");
+            System.out.println("");
             System.out.print("Seleccione una opción: ");
 
             int opcion = validadores.rangeValidator(1, 12);

@@ -55,46 +55,84 @@ public class ConsoleAdapterPrincipioActivo {
 
             switch (opcion) {
                 case 1:
-                    validadores.limpiarConsola();
-                    System.out.println("ingrese el nombre del Principio Activo: ");
-                    String nombre = scanner.nextLine();                    
-                    PrincipioActivo principioActivo = new PrincipioActivo(nombre);
-                    createActivo.execute(principioActivo);
+                    try {
+                        validadores.limpiarConsola();
+                        System.out.println("ingrese el nombre del Principio Activo: ");
+                        String nombre = scanner.nextLine();                    
+                        PrincipioActivo principioActivo = new PrincipioActivo(nombre);
+                        createActivo.execute(principioActivo);
+                        
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        System.out.println("");
+                        System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELEVE A INTENTARLO");                
+                        validadores.pausa();
+                        StartPrincipioActivo();
+                    }
+                    
                     validadores.pausa();
                     validadores.limpiarConsola();
                     
                     break;
                 case 2:
-                    validadores.limpiarConsola();
-                    System.out.println("ingresa el codigo del Principio Activo");
-                    int codigoDel = scanner.nextInt();
-                    delActivo.execute(codigoDel);
+                    try {
+                        validadores.limpiarConsola();
+                        System.out.println("ingresa el codigo del Principio Activo");
+                        int codigoDel = scanner.nextInt();
+                        delActivo.execute(codigoDel);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        System.out.println("");
+                        System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELVE A INTENTARLO");                
+                        validadores.pausa();
+                        StartPrincipioActivo();
+                    }
+                    
                     validadores.pausa();
                     validadores.limpiarConsola();
 
                     break;
                 case 3:
-                    validadores.limpiarConsola();
-                    System.out.println("ingresa el codigo del Principio Activo");
-                    int codigoUPd = scanner.nextInt();
-                    updActivo.execute(codigoUPd);
+                    try {
+                        validadores.limpiarConsola();
+                        System.out.println("ingresa el codigo del Principio Activo");
+                        int codigoUPd = scanner.nextInt();
+                        updActivo.execute(codigoUPd);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        System.out.println("");
+                        System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELVE A INTENTARLO");                
+                        validadores.pausa();
+                        StartPrincipioActivo();
+                    }
+                    
                     validadores.pausa();
                     validadores.limpiarConsola();
                     
                     break;
                 case 4:
-                    validadores.limpiarConsola();
-                    System.out.println("ingresa el codigo del Principio Activo");
-                    int codigoID = scanner.nextInt();
+                    try {
+                        validadores.limpiarConsola();
+                        System.out.println("ingresa el codigo del Principio Activo");
+                        int codigoID = scanner.nextInt();
 
-                    Optional<PrincipioActivo> td = idActivo.execute(codigoID);
-                    
-                    if (td.isPresent()) {
-                        PrincipioActivo ptd = td.get();
-                        System.out.println("Id: " + ptd.getIdpa() + " NOMBRE: " + ptd.getNombre());
-                    } else {
-                        System.out.println("Principio Activo no encontrado.");
+                        Optional<PrincipioActivo> td = idActivo.execute(codigoID);
+                        
+                        if (td.isPresent()) {
+                            PrincipioActivo ptd = td.get();
+                            System.out.println("Id: " + ptd.getIdpa() + " NOMBRE: " + ptd.getNombre());
+                        } else {
+                            System.out.println("Principio Activo no encontrado.");
+                        }
+                        
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        System.out.println("");
+                        System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELVE A INTENTARLO");                
+                        validadores.pausa();
+                        StartPrincipioActivo();
                     }
+                    
                     validadores.pausa();
                     validadores.limpiarConsola();
                     break;

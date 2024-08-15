@@ -55,6 +55,7 @@ public class ConsoleAdapterFarmaciaMedicina {
 
                 switch (opcion) {
                     case 1:
+                    try {
                         validadores.limpiarConsola();
                         System.out.println("ingresa el id de la farmacia");
                         int farmaciaid = scanner.nextInt();
@@ -66,62 +67,101 @@ public class ConsoleAdapterFarmaciaMedicina {
 
                         FarmaciaMedicina farmaciaMedicina = new FarmaciaMedicina(farmaciaid, medicamentoid,precio);
                         createFM.execute(farmaciaMedicina);
+                        
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        System.out.println("");
+                        System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELEVE A INTENTARLO");                
+                        validadores.pausa();
+                        StartFarmaciaMedicina();;
+                    }
+                        
                         validadores.pausa();
                         validadores.limpiarConsola();
                         
                         break;
                     case 2:
-                        validadores.limpiarConsola();
-                        System.out.println("ingresa el id de la farmacia");
-                        int farmaciaid2 = scanner.nextInt();
-                        System.out.println("ingresa el id del medicamento");
-                        int medicamentoid2 = scanner.nextInt();
-                        delFM.execute(farmaciaid2, medicamentoid2);
+                        try {
+                            validadores.limpiarConsola();
+                            System.out.println("ingresa el id de la farmacia");
+                            int farmaciaid2 = scanner.nextInt();
+                            System.out.println("ingresa el id del medicamento");
+                            int medicamentoid2 = scanner.nextInt();
+                            delFM.execute(farmaciaid2, medicamentoid2);
+                            
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            System.out.println("");
+                            System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELVE A INTENTARLO");                
+                            validadores.pausa();
+                            StartFarmaciaMedicina();
+                        }
+                        
                         validadores.pausa();
                         validadores.limpiarConsola();
 
                         break;
 
                     case 3:
-                        validadores.limpiarConsola();
-                        System.out.println("ingresa el id de la farmacia");
-                        int farmaciaidupd = scanner.nextInt();
-                        System.out.println("ingresa el id del medicamento");
-                        int medicamentoidupd = scanner.nextInt();
+                        try {
+                            validadores.limpiarConsola();
+                            System.out.println("ingresa el id de la farmacia");
+                            int farmaciaidupd = scanner.nextInt();
+                            System.out.println("ingresa el id del medicamento");
+                            int medicamentoidupd = scanner.nextInt();
 
-                        Optional<FarmaciaMedicina> FarmaciaMedicinaExistente = idFM.execute(farmaciaidupd, medicamentoidupd);
-                        if (!FarmaciaMedicinaExistente.isPresent()) {
-                            System.out.println("Farmacia Medicina no encontrado.");
-                            break;
+                            Optional<FarmaciaMedicina> FarmaciaMedicinaExistente = idFM.execute(farmaciaidupd, medicamentoidupd);
+                            if (!FarmaciaMedicinaExistente.isPresent()) {
+                                System.out.println("Farmacia Medicina no encontrado.");
+                                break;
+                            }
+                            FarmaciaMedicina FarmaciaMedicinaActual = FarmaciaMedicinaExistente.get();
+
+                            System.out.print("Ingrese el nuevo precio: ");
+                            FarmaciaMedicinaActual.setPrecio(scanner.nextFloat());
+                            
+                                    
+                            upFM.execute(FarmaciaMedicinaActual);
+                            
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            System.out.println("");
+                            System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELVE A INTENTARLO");                
+                            validadores.pausa();
+                            StartFarmaciaMedicina();
                         }
-                        FarmaciaMedicina FarmaciaMedicinaActual = FarmaciaMedicinaExistente.get();
-
-                        System.out.print("Ingrese el nuevo precio: ");
-                        FarmaciaMedicinaActual.setPrecio(scanner.nextFloat());
                         
-                                  
-                        upFM.execute(FarmaciaMedicinaActual);
                         validadores.pausa();
                         validadores.limpiarConsola();
                         
                         break;
                     case 4:
-                        validadores.limpiarConsola();
-                        System.out.println("ingresa el id de la farmacia");
-                        int farmaciaidprint = scanner.nextInt();
-                        System.out.println("ingresa el id del medicamento");
-                        int medicamentoidprint = scanner.nextInt();
+                        try {
+                            validadores.limpiarConsola();
+                            System.out.println("ingresa el id de la farmacia");
+                            int farmaciaidprint = scanner.nextInt();
+                            System.out.println("ingresa el id del medicamento");
+                            int medicamentoidprint = scanner.nextInt();
 
-                        Optional<FarmaciaMedicina> td = idFM.execute(farmaciaidprint, medicamentoidprint);
-                        
-                        if (td.isPresent()) {
-                            FarmaciaMedicina ptd = td.get();
-                            System.out.println("Id FARMACIA: " + ptd.getIdFarmacia() + " ID MEDICAMENTO: " + ptd.getIdMedicinaFarm() + " PRECIO: " + ptd.getPrecio());
-                        } else {                                                                                                                                                                        
-                            System.out.println("FarmaciaMedicina no encontrado.");
+                            Optional<FarmaciaMedicina> td = idFM.execute(farmaciaidprint, medicamentoidprint);
+                            
+                            if (td.isPresent()) {
+                                FarmaciaMedicina ptd = td.get();
+                                System.out.println("Id FARMACIA: " + ptd.getIdFarmacia() + " ID MEDICAMENTO: " + ptd.getIdMedicinaFarm() + " PRECIO: " + ptd.getPrecio());
+                            } else {                                                                                                                                                                        
+                                System.out.println("FarmaciaMedicina no encontrado.");
+                            }
+                            validadores.pausa();
+                            validadores.limpiarConsola();
+                            
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            System.out.println("");
+                            System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELVE A INTENTARLO");                
+                            validadores.pausa();
+                            StartFarmaciaMedicina();
                         }
-                        validadores.pausa();
-                        validadores.limpiarConsola();
+                        
                         break;
                     case 5:
                         validadores.limpiarConsola();

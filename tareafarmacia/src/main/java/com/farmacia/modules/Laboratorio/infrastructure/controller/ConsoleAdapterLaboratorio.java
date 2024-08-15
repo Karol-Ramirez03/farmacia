@@ -52,86 +52,129 @@ public class ConsoleAdapterLaboratorio {
 
                 switch (opcion) {
                     case 1:
-                        validadores.limpiarConsola();
-                        System.out.println("ingrese el nombre de la Laboratorio: ");
-                        String nombreLaboratorio = scanner.nextLine();
-                        System.out.println("ingrese el codigo de la ciudad del Laboratorio: ");
-                        String codCiudad = scanner.nextLine();
-                       
+                        try {
+                            validadores.limpiarConsola();
+                            System.out.println("ingrese el nombre de la Laboratorio: ");
+                            String nombreLaboratorio = scanner.nextLine();
+                            System.out.println("ingrese el codigo de la ciudad del Laboratorio: ");
+                            String codCiudad = scanner.nextLine();
+                            Laboratorio laboratorio = new Laboratorio(nombreLaboratorio, codCiudad);
+                            createlab.execute(laboratorio);
 
-                        Laboratorio laboratorio = new Laboratorio(nombreLaboratorio, codCiudad);
-                        createlab.execute(laboratorio);
+                            validadores.pausa();
+                            validadores.limpiarConsola();
+                            
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            System.out.println("");
+                            System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELEVE A INTENTARLO");                
+                            validadores.pausa();
+                            StartLaboratorio();
+                        }
+                        
                         
                         break;
                     case 2:
-                        validadores.limpiarConsola();
-                        System.out.println("ingresa el id del Laboratorio");
-                        int codigoDel = scanner.nextInt();
-                        dellab.execute(codigoDel);
-                        validadores.pausa();
-                        validadores.limpiarConsola();
+                        try {
+                            validadores.limpiarConsola();
+                            System.out.println("ingresa el id del Laboratorio");
+                            int codigoDel = scanner.nextInt();
+                            dellab.execute(codigoDel);
+                            validadores.pausa();
+                            validadores.limpiarConsola();
+                            
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            System.out.println("");
+                            System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELEVE A INTENTARLO");                
+                            validadores.pausa();
+                            StartLaboratorio();
+                        }
+                        
 
                         break;
 
                     case 3:
-                        validadores.limpiarConsola();
-                        System.out.println("ingresa el id del Laboratorio");
-                        int codigoUPd = scanner.nextInt();
 
-                        Optional<Laboratorio> LaboratorioExistente = idLab.execute(codigoUPd);
-                        if (!LaboratorioExistente.isPresent()) {
-                            System.out.println("Laboratorio no encontrado.");
-                            break;
-                        }
-                        Laboratorio LaboratorioActual = LaboratorioExistente.get();
-                        boolean actualizar = true;
-
-                        while (actualizar) {
+                        try {
                             validadores.limpiarConsola();
-                            System.out.println("Seleccione el campo a actualizar:");
-                            System.out.println("1. Nombre");
-                            System.out.println("2. codigo de ciudad");
-                            System.out.println("3. terminar Actualizacion");
+                            System.out.println("ingresa el id del Laboratorio");
+                            int codigoUPd = scanner.nextInt();
 
-
-                            int campo = validadores.rangeValidator(1, 3);
-
-                            switch (campo) {
-                                case 1:
-                                    System.out.print("Ingrese el nuevo nombre: ");
-                                    LaboratorioActual.setNombreLab(scanner.nextLine());
-                                    
-                                    break;
-                                case 2:
-                                    System.out.print("Ingrese el nuevo codigo de ciudad: ");
-                                    LaboratorioActual.setCodigoCiudad(scanner.nextLine());
-                               
-                                    break;
-                                case 3:
-                                    actualizar = false;
-                                    break;
-                                default:
-                                    System.out.println("Opción inválida, intente de nuevo.");
+                            Optional<Laboratorio> LaboratorioExistente = idLab.execute(codigoUPd);
+                            if (!LaboratorioExistente.isPresent()) {
+                                System.out.println("Laboratorio no encontrado.");
+                                break;
                             }
+                            Laboratorio LaboratorioActual = LaboratorioExistente.get();
+                            boolean actualizar = true;
+
+                            while (actualizar) {
+                                validadores.limpiarConsola();
+                                System.out.println("Seleccione el campo a actualizar:");
+                                System.out.println("1. Nombre");
+                                System.out.println("2. codigo de ciudad");
+                                System.out.println("3. terminar Actualizacion");
+
+
+                                int campo = validadores.rangeValidator(1, 3);
+
+                                switch (campo) {
+                                    case 1:
+                                        System.out.print("Ingrese el nuevo nombre: ");
+                                        LaboratorioActual.setNombreLab(scanner.nextLine());
+                                        
+                                        break;
+                                    case 2:
+                                        System.out.print("Ingrese el nuevo codigo de ciudad: ");
+                                        LaboratorioActual.setCodigoCiudad(scanner.nextLine());
+                                
+                                        break;
+                                    case 3:
+                                        actualizar = false;
+                                        break;
+                                    default:
+                                        System.out.println("Opción inválida, intente de nuevo.");
+                                }
+                            }
+                            updlab.execute(LaboratorioActual);
+                            
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            System.out.println("");
+                            System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELVE A INTENTARLO");                
+                            validadores.pausa();
+                            StartLaboratorio();
                         }
-                        updlab.execute(LaboratorioActual);
+                        
                         validadores.pausa();
                         validadores.limpiarConsola();
                         
                         break;
                     case 4:
-                        validadores.limpiarConsola();
-                        System.out.println("ingresa el codigo del Laboratorio");
-                        int codigoID = scanner.nextInt();
 
-                        Optional<Laboratorio> td = idLab.execute(codigoID);
-                        
-                        if (td.isPresent()) {
-                            Laboratorio ptd = td.get();
-                            System.out.println("Id: " + ptd.getCodigoLab() + " NOMBRE: " + ptd.getNombreLab() + " CODIGO CIUDAD: " + ptd.getCodigoCiudad());
-                        } else {                                                                                                                                                                        
-                            System.out.println("Laboratorio no encontrado.");
+                        try {
+                            validadores.limpiarConsola();
+                            System.out.println("ingresa el codigo del Laboratorio");
+                            int codigoID = scanner.nextInt();
+
+                            Optional<Laboratorio> td = idLab.execute(codigoID);
+                            
+                            if (td.isPresent()) {
+                                Laboratorio ptd = td.get();
+                                System.out.println("Id: " + ptd.getCodigoLab() + " NOMBRE: " + ptd.getNombreLab() + " CODIGO CIUDAD: " + ptd.getCodigoCiudad());
+                            } else {                                                                                                                                                                        
+                                System.out.println("Laboratorio no encontrado.");
+                            }
+                            
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            System.out.println("");
+                            System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELVE A INTENTARLO");                
+                            validadores.pausa();
+                            StartLaboratorio();
                         }
+                        
                         validadores.pausa();
                         validadores.limpiarConsola();
                         break;

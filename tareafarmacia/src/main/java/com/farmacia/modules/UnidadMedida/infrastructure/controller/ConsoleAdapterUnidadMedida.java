@@ -64,37 +64,65 @@ public class ConsoleAdapterUnidadMedida {
                     
                     break;
                 case 2:
-                    validadores.limpiarConsola();
-                    System.out.println("ingresa el codigo de la Unidad de Medida");
-                    int codigoDel = scanner.nextInt();
-                    delUm.execute(codigoDel);
+                    try {
+                        validadores.limpiarConsola();
+                        System.out.println("ingresa el codigo de la Unidad de Medida");
+                        int codigoDel = scanner.nextInt();
+                        delUm.execute(codigoDel);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        System.out.println("");
+                        System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELVE A INTENTARLO");                
+                        validadores.pausa();
+                        StartUnidadMedida();
+                    }
+                    
                     validadores.pausa();
                     validadores.limpiarConsola();
 
                     break;
                 case 3:
-                    validadores.limpiarConsola();
-                    System.out.println("ingresa el codigo de la Unidad de Medida");
-                    int codigoUPd = scanner.nextInt();
-
-                    updUm.execute(codigoUPd);
+                    try {
+                        validadores.limpiarConsola();
+                        System.out.println("ingresa el codigo de la Unidad de Medida");
+                        int codigoUPd = scanner.nextInt();
+                        updUm.execute(codigoUPd);
+                        
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        System.out.println("");
+                        System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELVE A INTENTARLO");                
+                        validadores.pausa();
+                        StartUnidadMedida();
+                    }
+                    
                     validadores.pausa();
                     validadores.limpiarConsola();
                     
                     break;
                 case 4:
-                    validadores.limpiarConsola();
-                    System.out.println("ingresa el codigo de la Unidad de Medida");
-                    int codigoID = scanner.nextInt();
-
-                    Optional<UnidadMedida> td = idUm.execute(codigoID);
-                    
-                    if (td.isPresent()) {
-                        UnidadMedida ptd = td.get();
-                        System.out.println("Id: " + ptd.getIdum() + " NOMBRE: " + ptd.getNombre());
-                    } else {
-                        System.out.println("Unidad de Medida no encontrado.");
+                    try {
+                        validadores.limpiarConsola();
+                        System.out.println("ingresa el codigo de la Unidad de Medida");
+                        int codigoID = scanner.nextInt();
+    
+                        Optional<UnidadMedida> td = idUm.execute(codigoID);
+                        
+                        if (td.isPresent()) {
+                            UnidadMedida ptd = td.get();
+                            System.out.println("Id: " + ptd.getIdum() + " NOMBRE: " + ptd.getNombre());
+                        } else {
+                            System.out.println("Unidad de Medida no encontrado.");
+                        }
+                        
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        System.out.println("");
+                        System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELVE A INTENTARLO");                
+                        validadores.pausa();
+                        StartUnidadMedida();
                     }
+                   
                     validadores.pausa();
                     validadores.limpiarConsola();
                     break;

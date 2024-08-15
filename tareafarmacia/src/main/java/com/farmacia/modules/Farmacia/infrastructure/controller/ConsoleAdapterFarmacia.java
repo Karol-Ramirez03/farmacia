@@ -78,7 +78,7 @@ public class ConsoleAdapterFarmacia {
                     } catch (Exception e) {
                         e.printStackTrace();
                         System.out.println("");
-                        System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELEVE A INTENTARLO");                
+                        System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELVE A INTENTARLO");                
                         validadores.pausa();
                         StartFarmacia();
                     }
@@ -98,7 +98,7 @@ public class ConsoleAdapterFarmacia {
                     } catch (Exception e) {
                         e.printStackTrace();
                         System.out.println("");
-                        System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELEVE A INTENTARLO");                
+                        System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELVE A INTENTARLO");                
                         validadores.pausa();
                         StartFarmacia();
                     }
@@ -179,7 +179,7 @@ public class ConsoleAdapterFarmacia {
                         } catch (Exception e) {
                             e.printStackTrace();
                             System.out.println("");
-                            System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELEVE A INTENTARLO");                
+                            System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELVE A INTENTARLO");                
                             validadores.pausa();
                             StartFarmacia();
                         }
@@ -206,7 +206,7 @@ public class ConsoleAdapterFarmacia {
                         } catch (Exception e) {
                             e.printStackTrace();
                             System.out.println("");
-                            System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELEVE A INTENTARLO");                
+                            System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELVE A INTENTARLO");                
                             validadores.pausa();
                             StartFarmacia();
                         }
