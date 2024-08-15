@@ -25,6 +25,7 @@ public class ModoAdministracionRepository implements ModoAdministracionService{
         PreparedStatement ps = connection.prepareStatement(sql)){
             ps.setInt(1, idma);
             ps.executeUpdate();
+            System.out.println("Modo administracion eliminado con exito!");
         } catch (SQLException e) {
            e.printStackTrace();
            System.out.println("codigo no encontrado");
@@ -41,6 +42,8 @@ public class ModoAdministracionRepository implements ModoAdministracionService{
             ps.setString(1, nombre);
             ps.setInt(2, idma);
             ps.executeUpdate();
+            System.out.println("Modo administracion actualizado con exito!");
+
             
         } catch (Exception e) {
             e.printStackTrace();
@@ -54,6 +57,8 @@ public class ModoAdministracionRepository implements ModoAdministracionService{
         PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, ModoAdministracion.getDescripcion());
             ps.executeUpdate();
+            System.out.println("Modo administracion creado con exito!");
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

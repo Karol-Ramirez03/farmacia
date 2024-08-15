@@ -32,7 +32,7 @@ public class MedicinaRepository implements MedicinaService{
             ps.setInt(10, medicina.getCodigoLab());
 
             ps.executeUpdate();
-
+            System.out.println("medicina agregado Exitosamente");
 
             
         } catch (SQLException e) {
@@ -49,6 +49,8 @@ public class MedicinaRepository implements MedicinaService{
 
             ps.setInt(1, id);
             ps.executeUpdate();
+            System.out.println("medicina eliminada Exitosamente");
+
             
         } catch (SQLException e) {
            e.printStackTrace();
@@ -138,6 +140,7 @@ public class MedicinaRepository implements MedicinaService{
             ps.setInt(11, medicina.getId());
             
             ps.executeUpdate();
+            System.out.println("medicina actualizada con exito!");
 
         } catch (Exception e) {
             e.printStackTrace();

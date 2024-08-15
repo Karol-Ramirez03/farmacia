@@ -43,13 +43,22 @@ public class ConsoleAdapterRegion {
 public void StartRegion(){
         boolean Bandera = true;
         Scanner scanner = new Scanner(System.in);
+        String titulo = """
+                
+            █▀▄▀█ █▀▀ █▄░█ █░█   █▀█ █▀▀ █▀▀ █ █▀█ █▄░█
+            █░▀░█ ██▄ █░▀█ █▄█   █▀▄ ██▄ █▄█ █ █▄█ █░▀█
+
+                """;
         
         while (Bandera) {
+            validadores.limpiarConsola();
+            System.out.println(titulo);
             System.out.println("1. añadir Region \n2. eliminar Region \n3. actualizar Region \n4. buscar por id \n5. listar Region\n6. salir");
             int opcion = validadores.rangeValidator(1, 6);
 
             switch (opcion) {
                 case 1:
+                    validadores.limpiarConsola();
                     System.out.println("ingrese el nombre de la Region: ");
                     String nombre = scanner.nextLine();
                     System.out.println("ingresa el codigo de la Region");
@@ -58,16 +67,22 @@ public void StartRegion(){
                     String codigopais = scanner.nextLine();
                     Region region = new Region(codigo,nombre, codigopais);
                     createRegionUseCase.execute(region);
+                    validadores.pausa();
+                    validadores.limpiarConsola();
                     
                     break;
                 case 2:
+                    validadores.limpiarConsola();
                     System.out.println("ingresa el codigo del Region");
                     String codigoDel = scanner.nextLine();
                     deleteRegionUseCase.execute(codigoDel);
+                    validadores.pausa();
+                    validadores.limpiarConsola();
 
                     break;
 
                 case 3:
+                    validadores.limpiarConsola();
                     System.out.println("ingresa el codigo del Region");
                     String codigoUPd = scanner.nextLine();
 
@@ -80,6 +95,7 @@ public void StartRegion(){
                     boolean actualizar = true;
 
                     while (actualizar) {
+                        validadores.limpiarConsola();
                         System.out.println("Seleccione el campo a actualizar:");
                         System.out.println("1. Nombre");
                         System.out.println("2. codigo del pais");
@@ -104,9 +120,12 @@ public void StartRegion(){
                         }
                     }
                     updateRegionUseCase.execute(RegionActual);
+                    validadores.pausa();
+                    validadores.limpiarConsola();
                     
                     break;
                 case 4:
+                    validadores.limpiarConsola();
                     System.out.println("ingresa el codigo de la Region");
                     String codigoID = scanner.nextLine();
 
@@ -118,14 +137,19 @@ public void StartRegion(){
                     } else {
                         System.out.println("Region no encontrado.");
                     }
-                    
+                    validadores.pausa();
+                    validadores.limpiarConsola();
                     break;
                 case 5:
+                    validadores.limpiarConsola();
                     List<Region> Regiones = allRegionUseCase.execute();
                     for (Region Region2 : Regiones) {
                         System.out.println("ID: " + Region2.getCodigoreg() + " Nombre: " + Region2.getNombrereg() + "CODIGO DE LA REGION: " + Region2.getCodigopais());
                         System.out.println("--------------------");
                     }
+                    validadores.pausa();
+                    validadores.limpiarConsola();
+                   
                     break;
                 case 6:
                     return;
@@ -134,6 +158,7 @@ public void StartRegion(){
             }
             
         }
+        scanner.close();
 
     }
 }

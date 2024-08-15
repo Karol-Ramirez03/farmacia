@@ -23,6 +23,7 @@ public class UnidadMedidaRepository implements UnidadMedidaService {
         PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, unidadMedida.getNombre());
             ps.executeUpdate();
+            System.out.println("unidad de medida registrada con exito!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -36,6 +37,7 @@ public class UnidadMedidaRepository implements UnidadMedidaService {
         PreparedStatement ps = connection.prepareStatement(sql)){
             ps.setInt(1, idum);
             ps.executeUpdate();
+            System.out.println("unidad de medida eliminada con exito!");
         } catch (SQLException e) {
            e.printStackTrace();
            System.out.println("codigo no encontrado");
@@ -92,6 +94,7 @@ public class UnidadMedidaRepository implements UnidadMedidaService {
             ps.setString(1, nombre);
             ps.setInt(2, idum);
             ps.executeUpdate();
+            System.out.println("unidad de medida registrada con exito!");
             
         } catch (Exception e) {
             e.printStackTrace();

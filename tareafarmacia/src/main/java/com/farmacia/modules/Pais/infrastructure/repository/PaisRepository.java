@@ -24,6 +24,7 @@ public class PaisRepository implements PaisService {
             ps.setString(1, pais.getCodigopais());
             ps.setString(2, pais.getNombre());
             ps.executeUpdate();
+            System.out.println("pais creado con exito!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -37,6 +38,7 @@ public class PaisRepository implements PaisService {
         PreparedStatement ps = connection.prepareStatement(sql)){
             ps.setString(1, codigo);
             ps.executeUpdate();
+            System.out.println("pais eliminado con exito!");
         } catch (SQLException e) {
            e.printStackTrace();
            System.out.println("codigo no encontrado");
@@ -92,6 +94,7 @@ public class PaisRepository implements PaisService {
             ps.setString(1, nombre);
             ps.setString(2, codigo);
             ps.executeUpdate();
+            System.out.println("pais actualizado con exito!");
             
         } catch (Exception e) {
             e.printStackTrace();

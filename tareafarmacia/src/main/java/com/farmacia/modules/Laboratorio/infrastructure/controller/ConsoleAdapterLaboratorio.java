@@ -37,13 +37,22 @@ public class ConsoleAdapterLaboratorio {
     public void StartLaboratorio(){
             boolean Bandera = true;
             Scanner scanner = new Scanner(System.in);
+            String titulo = """
+                        
+            █▀▄▀█ █▀▀ █▄░█ █░█   █░░ ▄▀█ █▄▄ █▀█ █▀█ ▄▀█ ▀█▀ █▀█ █▀█ █ █▀█ █▀
+            █░▀░█ ██▄ █░▀█ █▄█   █▄▄ █▀█ █▄█ █▄█ █▀▄ █▀█ ░█░ █▄█ █▀▄ █ █▄█ ▄█
+
+                    """;
             
             while (Bandera) {
+                validadores.limpiarConsola();
+                System.out.println(titulo);
                 System.out.println("1. añadir Laboratorio \n2. eliminar Laboratorio \n3. actualizar Laboratorio \n4. buscar por id \n5. listar Laboratorio\n6. salir");
                 int opcion = validadores.rangeValidator(1, 6);
 
                 switch (opcion) {
                     case 1:
+                        validadores.limpiarConsola();
                         System.out.println("ingrese el nombre de la Laboratorio: ");
                         String nombreLaboratorio = scanner.nextLine();
                         System.out.println("ingrese el codigo de la ciudad del Laboratorio: ");
@@ -55,13 +64,17 @@ public class ConsoleAdapterLaboratorio {
                         
                         break;
                     case 2:
+                        validadores.limpiarConsola();
                         System.out.println("ingresa el id del Laboratorio");
                         int codigoDel = scanner.nextInt();
                         dellab.execute(codigoDel);
+                        validadores.pausa();
+                        validadores.limpiarConsola();
 
                         break;
 
                     case 3:
+                        validadores.limpiarConsola();
                         System.out.println("ingresa el id del Laboratorio");
                         int codigoUPd = scanner.nextInt();
 
@@ -74,6 +87,7 @@ public class ConsoleAdapterLaboratorio {
                         boolean actualizar = true;
 
                         while (actualizar) {
+                            validadores.limpiarConsola();
                             System.out.println("Seleccione el campo a actualizar:");
                             System.out.println("1. Nombre");
                             System.out.println("2. codigo de ciudad");
@@ -101,9 +115,12 @@ public class ConsoleAdapterLaboratorio {
                             }
                         }
                         updlab.execute(LaboratorioActual);
+                        validadores.pausa();
+                        validadores.limpiarConsola();
                         
                         break;
                     case 4:
+                        validadores.limpiarConsola();
                         System.out.println("ingresa el codigo del Laboratorio");
                         int codigoID = scanner.nextInt();
 
@@ -115,14 +132,18 @@ public class ConsoleAdapterLaboratorio {
                         } else {                                                                                                                                                                        
                             System.out.println("Laboratorio no encontrado.");
                         }
-                        
+                        validadores.pausa();
+                        validadores.limpiarConsola();
                         break;
                     case 5:
+                        validadores.limpiarConsola();
                         List<Laboratorio> Laboratorios = allLab.execute();
                         for (Laboratorio Laboratorio2 : Laboratorios) {
                             System.out.println("Id: " + Laboratorio2.getCodigoLab() + " NOMBRE: " + Laboratorio2.getNombreLab() + " CODIGO CIUDAD: " + Laboratorio2.getCodigoCiudad());
                             System.out.println("--------------------");
                         }
+                        validadores.pausa();
+                        validadores.limpiarConsola();
                         break;
                     case 6:
                         return;
@@ -131,6 +152,7 @@ public class ConsoleAdapterLaboratorio {
                 }
                 
             }
+            scanner.close();
 
         }    
 

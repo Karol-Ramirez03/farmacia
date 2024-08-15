@@ -14,9 +14,11 @@ public class validadores {
                 if (number >= minNumber && number <= maxNumber) {
                     return number;
                 } else {
+                    limpiarConsola();
                     System.out.println("Error: El número debe estar dentro del rango especificado.\nIngresa un numero: ");
                 }
             } catch (Exception e) {
+                limpiarConsola();
                 System.out.println("Error: Debes introducir un número entero.\nIngresa un numero: ");
                 sc.next();
             }
@@ -26,10 +28,10 @@ public class validadores {
     public static void limpiarConsola() {
         try {
             if (System.getProperty("os.name").contains("Windows")) {
-                // Para sistemas Windows
+
                 new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
             } else {
-                // Para sistemas Unix/Linux/MacOS
+
                 System.out.print("\033[H\033[2J");
                 System.out.flush();
             }

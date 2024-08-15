@@ -35,8 +35,16 @@ public class ConsoleAdapterMedicina {
     public void StartMedicina() {
         boolean bandera = true;
         Scanner scanner = new Scanner(System.in);
+        String titulo = """
+        
+            █▀▄▀█ █▀▀ █▄░█ █░█   █▀▄▀█ █▀▀ █▀▄ █ █▀▀ █ █▄░█ ▄▀█
+            █░▀░█ ██▄ █░▀█ █▄█   █░▀░█ ██▄ █▄▀ █ █▄▄ █ █░▀█ █▀█        
+
+                """;
 
         while (bandera) {
+            validadores.limpiarConsola();
+            System.out.println(titulo);
             System.out.println("1. añadir medicina \n2. eliminar medicina \n3. actualizar medicina \n4. buscar por id \n5. listar medicina\n6. salir");
             int opcion = validadores.rangeValidator(1, 6);
 
@@ -65,15 +73,21 @@ public class ConsoleAdapterMedicina {
 
                     Medicina medicina = new Medicina(proceedings, nombre, registroMedico, descripcion, descripcionCorto, nombreRol, codigoModoAdmin, codigoPrincActivo, codigoUnidadMedida, codigoLab);
                     createMed.execute(medicina);
+                    validadores.pausa();
+                    validadores.limpiarConsola();
                     
                     break;
                 case 2:
+                    validadores.limpiarConsola();
                     System.out.println("ingresa el id del medicamento");
                     int iddel = scanner.nextInt();
                     delmed.execute(iddel);
+                    validadores.pausa();
+                    validadores.limpiarConsola();
                     
                     break;
                 case 3:
+                    validadores.limpiarConsola();
                     System.out.println("ingrese el id del medicamento para acctualizar");
                     int idupd = scanner.nextInt();
                     Optional<Medicina> medicinaActulizar = idmed.execute(idupd);
@@ -149,8 +163,11 @@ public class ConsoleAdapterMedicina {
                         
                     }
                     updmed.execute(medicamentoActual);
+                    validadores.pausa();
+                    validadores.limpiarConsola();
                     break;
                 case 4:
+                    validadores.limpiarConsola();
                     System.out.println("ingresa el codigo de la Medicina");
                     int codigoID = scanner.nextInt();
 
@@ -162,14 +179,19 @@ public class ConsoleAdapterMedicina {
                     } else {                                                                                                                                                                                                                                                                                                         
                         System.out.println("Medicina no encontrado.");
                     }
+                    validadores.pausa();
+                    validadores.limpiarConsola();
                     
                     break;
                 case 5:
+                    validadores.limpiarConsola();
                     List<Medicina> Medicinas = allmed.execute();
                         for (Medicina Medicina2 : Medicinas) {
                             System.out.println("Proceedings: " + Medicina2.getProceedings() + " NOMBRE: " + Medicina2.getNombre() + " REGISTRO MEDICO: " + Medicina2.getRegistroMedico() + " DESCRIPCION: " + Medicina2.getDescripcion() +" RESUMEN: " + Medicina2.getDescripcionCorto()+" NOMBRE ROL:"+ Medicina2.getNombreRol() + " CODIGO MODO DE ADMINISTRACION: " + Medicina2.getCodigoModoAdmin() + " CODIGO PRINCIPIO ACTIVO: "+ Medicina2.getCodigoPrincActivo() + " CODIGO UNIDAD MEDIDA: "+ Medicina2.getCodigoUnidadMedida()+" CODIGO DEL LABORATORIO: "+ Medicina2.getCodigoLab());
                             System.out.println("____________________");
                         }
+                    validadores.pausa();
+                    validadores.limpiarConsola();
                     
                     break;
                 case 6:
@@ -182,7 +204,7 @@ public class ConsoleAdapterMedicina {
             
         }
 
-
+        scanner.close();
 
     }
     

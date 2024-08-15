@@ -40,13 +40,22 @@ public class ConsoleAdapterFarmaciaMedicina {
     public void StartFarmaciaMedicina(){
             boolean Bandera = true;
             Scanner scanner = new Scanner(System.in);
+            String titulo = """
+                    
+                █▀▄▀█ █▀▀ █▄░█ █░█   █▀▄ █▀▀   ▄▀█ █▀ █ █▀▀ ▄▀█ █▄░█ ▄▀█ █▀▀ █ █▀█ █▄░█
+                █░▀░█ ██▄ █░▀█ █▄█   █▄▀ ██▄   █▀█ ▄█ █ █▄█ █▀█ █░▀█ █▀█ █▄▄ █ █▄█ █░▀█
+
+                    """;
             
             while (Bandera) {
+                validadores.limpiarConsola();
+                System.out.println(titulo);
                 System.out.println("1. añadir asignacion de medicamento a farmacias \n2. eliminar asignacion de medicamento a farmacias \n3. actualizar asignacion de medicamento a farmacias \n4. buscar por id \n5. listar asignacion de medicamento a farmacias\n6. salir");
                 int opcion = validadores.rangeValidator(1, 6);
 
                 switch (opcion) {
                     case 1:
+                        validadores.limpiarConsola();
                         System.out.println("ingresa el id de la farmacia");
                         int farmaciaid = scanner.nextInt();
                         System.out.println("ingresa el id del medicamento");
@@ -57,18 +66,24 @@ public class ConsoleAdapterFarmaciaMedicina {
 
                         FarmaciaMedicina farmaciaMedicina = new FarmaciaMedicina(farmaciaid, medicamentoid,precio);
                         createFM.execute(farmaciaMedicina);
+                        validadores.pausa();
+                        validadores.limpiarConsola();
                         
                         break;
                     case 2:
+                        validadores.limpiarConsola();
                         System.out.println("ingresa el id de la farmacia");
                         int farmaciaid2 = scanner.nextInt();
                         System.out.println("ingresa el id del medicamento");
                         int medicamentoid2 = scanner.nextInt();
                         delFM.execute(farmaciaid2, medicamentoid2);
+                        validadores.pausa();
+                        validadores.limpiarConsola();
 
                         break;
 
                     case 3:
+                        validadores.limpiarConsola();
                         System.out.println("ingresa el id de la farmacia");
                         int farmaciaidupd = scanner.nextInt();
                         System.out.println("ingresa el id del medicamento");
@@ -86,9 +101,12 @@ public class ConsoleAdapterFarmaciaMedicina {
                         
                                   
                         upFM.execute(FarmaciaMedicinaActual);
+                        validadores.pausa();
+                        validadores.limpiarConsola();
                         
                         break;
                     case 4:
+                        validadores.limpiarConsola();
                         System.out.println("ingresa el id de la farmacia");
                         int farmaciaidprint = scanner.nextInt();
                         System.out.println("ingresa el id del medicamento");
@@ -102,14 +120,18 @@ public class ConsoleAdapterFarmaciaMedicina {
                         } else {                                                                                                                                                                        
                             System.out.println("FarmaciaMedicina no encontrado.");
                         }
-                        
+                        validadores.pausa();
+                        validadores.limpiarConsola();
                         break;
                     case 5:
+                        validadores.limpiarConsola();
                         List<FarmaciaMedicina> FarmaciaMedicinas = allFM.execute();
                         for (FarmaciaMedicina FarmaciaMedicina2 : FarmaciaMedicinas) {
                             System.out.println("ID FARMACIA: " + FarmaciaMedicina2.getIdFarmacia() + " ID MEDICAMENTO: " + FarmaciaMedicina2.getIdMedicinaFarm() + " PRECIO: " + FarmaciaMedicina2.getPrecio());
                             System.out.println("--------------------");
                         }
+                        validadores.pausa();
+                        validadores.limpiarConsola();
                         break;
                     case 6:
                         return;
@@ -118,6 +140,7 @@ public class ConsoleAdapterFarmaciaMedicina {
                 }
                 
             }
+            scanner.close();
 
         }    
 }

@@ -28,6 +28,7 @@ public class FarmaciaRepository implements FarmaciaService{
             ps.setString(6, farmacia.getLogoFarmacia());
 
             ps.executeUpdate();
+            System.out.println("Farmacia creada con exito! ");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -41,6 +42,7 @@ public class FarmaciaRepository implements FarmaciaService{
         PreparedStatement ps = connection.prepareStatement(sql)){
             ps.setInt(1, id);
             ps.executeUpdate();
+            System.out.println("Farmacia eliminada con exito! ");
         } catch (SQLException e) {
            e.printStackTrace();
            System.out.println("codigo no encontrado");
@@ -74,7 +76,7 @@ public class FarmaciaRepository implements FarmaciaService{
 
     @Override
     public Optional<Farmacia> findById(int id) {
-        String sql = "SELECT nombrefarmacia, direccionfarmacia, longfarmacia, latfarmacia, codigociudadfarm, logofarmacia FROM farmacia WHERE idf = ?";
+        String sql = "SELECT idf, nombrefarmacia, direccionfarmacia, longfarmacia, latfarmacia, codigociudadfarm, logofarmacia FROM farmacia WHERE idf = ?";
        
         try (Connection con = database.getConnection();
         PreparedStatement ps = con.prepareStatement(sql)){
@@ -113,6 +115,7 @@ public class FarmaciaRepository implements FarmaciaService{
 
 
             statement.executeUpdate();
+            System.out.println("farmacia Actualizada con exito!");
         } catch (SQLException e) {
             System.out.println("Error al actualizar la Farmacia: " + e.getMessage());
             e.printStackTrace();

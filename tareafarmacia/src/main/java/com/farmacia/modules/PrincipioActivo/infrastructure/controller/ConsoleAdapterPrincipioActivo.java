@@ -41,33 +41,49 @@ public class ConsoleAdapterPrincipioActivo {
     public void StartPrincipioActivo(){
         boolean Bandera = true;
         Scanner scanner = new Scanner(System.in);
+        String titulo = """
+                
+        █▀▄▀█ █▀▀ █▄░█ █░█   █▀█ █▀█ █ █▄░█ █▀▀ █ █▀█ █ █▀█   ▄▀█ █▀▀ ▀█▀ █ █░█ █▀█
+        █░▀░█ ██▄ █░▀█ █▄█   █▀▀ █▀▄ █ █░▀█ █▄▄ █ █▀▀ █ █▄█   █▀█ █▄▄ ░█░ █ ▀▄▀ █▄█
+                
+                """;
         while (Bandera) {
+            validadores.limpiarConsola();
+            System.out.println(titulo);
             System.out.println("1. añadir Principio Activo \n2. eliminar Principio Activo \n3. actualizar Principio Activo \n4. buscar por id \n5. listar Unidades de Medidas\n6. salir");
             int opcion = validadores.rangeValidator(1, 6);
 
             switch (opcion) {
                 case 1:
+                    validadores.limpiarConsola();
                     System.out.println("ingrese el nombre del Principio Activo: ");
-                    String nombre = scanner.nextLine();
-                    
+                    String nombre = scanner.nextLine();                    
                     PrincipioActivo principioActivo = new PrincipioActivo(nombre);
                     createActivo.execute(principioActivo);
+                    validadores.pausa();
+                    validadores.limpiarConsola();
                     
                     break;
                 case 2:
+                    validadores.limpiarConsola();
                     System.out.println("ingresa el codigo del Principio Activo");
                     int codigoDel = scanner.nextInt();
                     delActivo.execute(codigoDel);
+                    validadores.pausa();
+                    validadores.limpiarConsola();
 
                     break;
                 case 3:
+                    validadores.limpiarConsola();
                     System.out.println("ingresa el codigo del Principio Activo");
                     int codigoUPd = scanner.nextInt();
-
                     updActivo.execute(codigoUPd);
+                    validadores.pausa();
+                    validadores.limpiarConsola();
                     
                     break;
                 case 4:
+                    validadores.limpiarConsola();
                     System.out.println("ingresa el codigo del Principio Activo");
                     int codigoID = scanner.nextInt();
 
@@ -79,14 +95,18 @@ public class ConsoleAdapterPrincipioActivo {
                     } else {
                         System.out.println("Principio Activo no encontrado.");
                     }
-                    
+                    validadores.pausa();
+                    validadores.limpiarConsola();
                     break;
                 case 5:
+                    validadores.limpiarConsola();
                     List<PrincipioActivo> PrincipioActivos = allActivo.execute();
                     for (PrincipioActivo PrincipioActivo2 : PrincipioActivos) {
                         System.out.println("ID: " + PrincipioActivo2.getIdpa() + " Nombre: " + PrincipioActivo2.getNombre());
                         System.out.println("--------------------");
                     }
+                    validadores.pausa();
+                    validadores.limpiarConsola();
                     break;
                 case 6:
                     return;
@@ -95,6 +115,7 @@ public class ConsoleAdapterPrincipioActivo {
             }
             
         }
+        scanner.close();
 
     }
 

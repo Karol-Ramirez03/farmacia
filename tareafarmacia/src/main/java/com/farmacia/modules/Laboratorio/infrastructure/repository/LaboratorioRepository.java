@@ -24,6 +24,7 @@ public class LaboratorioRepository implements LaboratorioService{
             ps.setString(2, laboratorio.getCodigoCiudad());
 
             ps.executeUpdate();
+            System.out.println("Laboratorio creado con exito!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -37,6 +38,8 @@ public class LaboratorioRepository implements LaboratorioService{
         PreparedStatement ps = connection.prepareStatement(sql)){
             ps.setInt(1, id);
             ps.executeUpdate();
+            System.out.println("Laboratorio eliminado con exito!");
+
         } catch (SQLException e) {
            e.printStackTrace();
            System.out.println("codigo no encontrado");
@@ -94,9 +97,9 @@ public class LaboratorioRepository implements LaboratorioService{
                 statement.setString(1, laboratorio.getNombreLab());
                 statement.setString(2, laboratorio.getCodigoCiudad());
                 statement.setInt(3, laboratorio.getCodigoLab());
+                statement.executeUpdate();
+                System.out.println("Laboratorio actualizado con exito!");
 
-
-            statement.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Error al actualizar la laboratorio: " + e.getMessage());
             e.printStackTrace();

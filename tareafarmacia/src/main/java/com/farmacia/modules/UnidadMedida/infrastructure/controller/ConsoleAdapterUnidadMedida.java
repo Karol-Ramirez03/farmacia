@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 import com.farmacia.modules.UnidadMedida.domain.entity.UnidadMedida;
 import com.farmacia.validadores;
-import com.farmacia.modules.Region.application.FindByIdRegionUseCase;
 import com.farmacia.modules.UnidadMedida.application.CreateUnidadMedidadUseCase;
 import com.farmacia.modules.UnidadMedida.application.DeleteUnidadMedidaUseCase;
 import com.farmacia.modules.UnidadMedida.application.FindAllUnidadMedidaUseCase;
@@ -40,33 +39,51 @@ public class ConsoleAdapterUnidadMedida {
     public void StartUnidadMedida(){
         boolean Bandera = true;
         Scanner scanner = new Scanner(System.in);
+        String titulo = """
+        
+        █▀▄▀█ █▀▀ █▄░█ █░█   █░█ █▄░█ █ █▀▄ ▄▀█ █▀▄   █▀▄▀█ █▀▀ █▀▄ █ █▀▄ ▄▀█
+        █░▀░█ ██▄ █░▀█ █▄█   █▄█ █░▀█ █ █▄▀ █▀█ █▄▀   █░▀░█ ██▄ █▄▀ █ █▄▀ █▀█        
+
+                """;
         while (Bandera) {
+            validadores.limpiarConsola();
+            System.out.println(titulo);
             System.out.println("1. añadir Unidad de Medida \n2. eliminar Unidad de Medida \n3. actualizar Unidad de Medida \n4. buscar por id \n5. listar Unidades de Medidas\n6. salir");
             int opcion = validadores.rangeValidator(1, 6);
 
             switch (opcion) {
                 case 1:
+                    validadores.limpiarConsola();
                     System.out.println("ingrese el nombre de la Unidad de Medida: ");
                     String nombre = scanner.nextLine();
                     
                     UnidadMedida UnidadMedida = new UnidadMedida(nombre);
                     createUm.execute(UnidadMedida);
+                    validadores.pausa();
+                    validadores.limpiarConsola();
                     
                     break;
                 case 2:
+                    validadores.limpiarConsola();
                     System.out.println("ingresa el codigo de la Unidad de Medida");
                     int codigoDel = scanner.nextInt();
                     delUm.execute(codigoDel);
+                    validadores.pausa();
+                    validadores.limpiarConsola();
 
                     break;
                 case 3:
+                    validadores.limpiarConsola();
                     System.out.println("ingresa el codigo de la Unidad de Medida");
                     int codigoUPd = scanner.nextInt();
 
                     updUm.execute(codigoUPd);
+                    validadores.pausa();
+                    validadores.limpiarConsola();
                     
                     break;
                 case 4:
+                    validadores.limpiarConsola();
                     System.out.println("ingresa el codigo de la Unidad de Medida");
                     int codigoID = scanner.nextInt();
 
@@ -78,14 +95,18 @@ public class ConsoleAdapterUnidadMedida {
                     } else {
                         System.out.println("Unidad de Medida no encontrado.");
                     }
-                    
+                    validadores.pausa();
+                    validadores.limpiarConsola();
                     break;
                 case 5:
+                    validadores.limpiarConsola();
                     List<UnidadMedida> UnidadMedidas = allUm.execute(); 
                     for (UnidadMedida UnidadMedida2 : UnidadMedidas) {
                         System.out.println("ID: " + UnidadMedida2.getIdum() + " Nombre: " + UnidadMedida2.getNombre());
                         System.out.println("--------------------");
                     }
+                    validadores.pausa();
+                    validadores.limpiarConsola();
                     break;
                 case 6:
                     return;
@@ -94,6 +115,7 @@ public class ConsoleAdapterUnidadMedida {
             }
             
         }
+        scanner.close();
 
     }
 }

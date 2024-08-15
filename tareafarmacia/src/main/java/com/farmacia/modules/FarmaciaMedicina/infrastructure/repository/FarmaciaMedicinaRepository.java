@@ -25,6 +25,7 @@ public class FarmaciaMedicinaRepository implements FarmaciaMedicinaService{
             ps.setFloat(3, FarmaciaMedicina.getPrecio());
 
             ps.executeUpdate();
+            System.out.println("Asignacion creada!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -38,6 +39,7 @@ public class FarmaciaMedicinaRepository implements FarmaciaMedicinaService{
             ps.setInt(1, idfarmacia);
             ps.setInt(2, idmedicina);
             ps.executeUpdate();
+            System.out.println("Asignacion eliminada con exito!");
         } catch (SQLException e) {
            e.printStackTrace();
            System.out.println("codigo no encontrado");
@@ -97,6 +99,7 @@ public class FarmaciaMedicinaRepository implements FarmaciaMedicinaService{
                 ps.setInt(3, FarmaciaMedicina.getIdMedicinaFarm());
                 ps.setFloat(1, FarmaciaMedicina.getPrecio());
                 ps.executeUpdate();
+                System.out.println("actualizacion realizada con exito!");
         } catch (SQLException e) {
             System.out.println("Error al actualizar la FarmaciaMedicina: " + e.getMessage());
             e.printStackTrace();

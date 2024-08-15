@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Optional;
 
 import com.farmacia.database.database;
-import com.farmacia.modules.Ciudad.domain.entity.Ciudad;
 import com.farmacia.modules.Region.domain.Service.RegionService;
 import com.farmacia.modules.Region.domain.entity.Region;
 
@@ -26,6 +25,7 @@ public class RegionRepository implements RegionService {
             ps.setString(2, region.getNombrereg());
             ps.setString(3, region.getCodigopais());
             ps.executeUpdate();
+            System.out.println("region agregada con exito!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -39,6 +39,8 @@ public class RegionRepository implements RegionService {
         PreparedStatement ps = connection.prepareStatement(sql)){
             ps.setString(1, codigoReg);
             ps.executeUpdate();
+            System.out.println("region eliminada con exito!");
+
         } catch (SQLException e) {
            e.printStackTrace();
            System.out.println("codigo no encontrado");
@@ -99,6 +101,8 @@ public class RegionRepository implements RegionService {
             statement.setString(2, region.getCodigopais());
 
             statement.executeUpdate();
+            System.out.println("region actualizada con exito!");
+
         } catch (SQLException e) {
             System.out.println("Error al actualizar la region: " + e.getMessage());
             e.printStackTrace();

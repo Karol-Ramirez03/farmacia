@@ -39,13 +39,22 @@ public class ConsoleAdapterCliente {
         boolean Bandera = true;
         Scanner scanner = new Scanner(System.in);
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        validadores.limpiarConsola();
+        String titulo = """
+                
+            █▀▄▀█ █▀▀ █▄░█ █░█   █▀▀ █░░ █ █▀▀ █▄░█ ▀█▀ █▀▀ █▀
+            █░▀░█ ██▄ █░▀█ █▄█   █▄▄ █▄▄ █ ██▄ █░▀█ ░█░ ██▄ ▄█
+                """;
         
         while (Bandera) {
+            validadores.limpiarConsola();
+            System.out.println(titulo);
             System.out.println("1. añadir Cliente \n2. eliminar Cliente \n3. actualizar Cliente \n4. buscar por id \n5. listar Cliente\n6. salir");
             int opcion = validadores.rangeValidator(1, 6);
 
             switch (opcion) {
                 case 1:
+                    validadores.limpiarConsola();
                     System.out.println("ingrese el nombre de la Cliente: ");
                     String nombrecliente = scanner.nextLine();
                     System.out.println("ingresa el id de la Cliente");
@@ -74,16 +83,27 @@ public class ConsoleAdapterCliente {
 
                     Cliente cliente = new Cliente(idcliente, nombrecliente, lastnombrecliente, codigociudadcliente, emailcliente, nacimiento, lon, latitud);
                     createCliente.execute(cliente);
+
+                    System.out.println("");
+                    System.out.println("cliente creado con exito!");
+                    validadores.pausa();
+                    validadores.limpiarConsola();
                     
                     break;
                 case 2:
+                    validadores.limpiarConsola();
                     System.out.println("ingresa el id del Cliente");
                     String codigoDel = scanner.nextLine();
                     delCliente.execute(codigoDel);
+                    System.out.println("");
+                    System.out.println("cliente eliminado con exito");
+                    validadores.pausa();
+                    validadores.limpiarConsola();
 
                     break;
 
                 case 3:
+                    validadores.limpiarConsola();
                     System.out.println("ingresa el id del Cliente");
                     String codigoUPd = scanner.nextLine();
 
@@ -96,6 +116,7 @@ public class ConsoleAdapterCliente {
                     boolean actualizar = true;
 
                     while (actualizar) {
+                        validadores.limpiarConsola();
                         System.out.println("Seleccione el campo a actualizar:");
                         System.out.println("1. Nombre");
                         System.out.println("2. apellido");
@@ -158,9 +179,14 @@ public class ConsoleAdapterCliente {
                         }
                     }
                     updCliente.execute(ClienteActual);
+                    System.out.println("");
+                    System.out.println("cliente actualizado con exito!");
+                    validadores.pausa();
+                    validadores.limpiarConsola();
                     
                     break;
                 case 4:
+                    validadores.limpiarConsola();
                     System.out.println("ingresa el codigo de la Cliente");
                     String codigoID = scanner.nextLine();
 
@@ -168,18 +194,25 @@ public class ConsoleAdapterCliente {
                     
                     if (td.isPresent()) {
                         Cliente ptd = td.get();
+                        System.out.println("");
                         System.out.println("Id: " + ptd.getIdCliente() + " NOMBRE: " + ptd.getNombreCliente() + " APELLIDOS: " + ptd.getLastNombreCliente() + " EMAIL: " + ptd.getEmailCliente()+" CODIGO CIUDAD" + ptd.getCodigoCiudadCliente());
+                        System.out.println("");
                     } else {
                         System.out.println("Cliente no encontrado.");
                     }
+                    validadores.pausa();
+                    validadores.limpiarConsola();
                     
                     break;
                 case 5:
+                    validadores.limpiarConsola();
                     List<Cliente> Clientes = allCliente.execute();
                     for (Cliente Cliente2 : Clientes) {
                         System.out.println("Id: " + Cliente2.getIdCliente() + " NOMBRE: " + Cliente2.getNombreCliente() + " APELLIDOS: " + Cliente2.getLastNombreCliente() + " EMAIL: " + Cliente2.getEmailCliente()+" CODIGO CIUDAD" + Cliente2.getCodigoCiudadCliente());
                         System.out.println("--------------------");
                     }
+                    validadores.pausa();
+                    validadores.limpiarConsola();
                     break;
                 case 6:
                     return;
@@ -188,6 +221,7 @@ public class ConsoleAdapterCliente {
             }
             
         }
+        scanner.close();
 
     }
     

@@ -1,8 +1,5 @@
 package com.farmacia.modules.Farmacia.infrastructure.controller;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -43,13 +40,23 @@ public class ConsoleAdapterFarmacia {
     public void StartFarmacia(){
             boolean Bandera = true;
             Scanner scanner = new Scanner(System.in);
+            String titulo = """
+                    
+                    █▀▄▀█ █▀▀ █▄░█ █░█   █▀▀ ▄▀█ █▀█ █▀▄▀█ ▄▀█ █▀▀ █ ▄▀█
+                    █░▀░█ ██▄ █░▀█ █▄█   █▀░ █▀█ █▀▄ █░▀░█ █▀█ █▄▄ █ █▀█
+
+                    """;
             
             while (Bandera) {
+                validadores.limpiarConsola();
+                System.out.println(titulo);
                 System.out.println("1. añadir Farmacia \n2. eliminar Farmacia \n3. actualizar Farmacia \n4. buscar por id \n5. listar Farmacia\n6. salir");
                 int opcion = validadores.rangeValidator(1, 6);
 
                 switch (opcion) {
                     case 1:
+                        validadores.limpiarConsola();
+                        System.out.println(titulo);
                         System.out.println("ingrese el nombre de la Farmacia: ");
                         String nombreFarmacia = scanner.nextLine();
                         System.out.println("ingrese el direccion de la Farmacia: ");
@@ -67,16 +74,23 @@ public class ConsoleAdapterFarmacia {
 
                         Farmacia Farmacia = new Farmacia(nombreFarmacia, direccion ,lon,latitud,ciudad,logo);
                         createFarm.execute(Farmacia);
+                        System.out.println("");
+                        validadores.pausa();
+                        validadores.limpiarConsola();
                         
                         break;
                     case 2:
+                        validadores.limpiarConsola();
                         System.out.println("ingresa el id del Farmacia");
                         int codigoDel = scanner.nextInt();
                         delFarm.execute(codigoDel);
+                        validadores.pausa();
+                        validadores.limpiarConsola();
 
                         break;
 
                     case 3:
+                        validadores.limpiarConsola();
                         System.out.println("ingresa el id del Farmacia");
                         int codigoUPd = scanner.nextInt();
 
@@ -89,6 +103,7 @@ public class ConsoleAdapterFarmacia {
                         boolean actualizar = true;
 
                         while (actualizar) {
+                            validadores.limpiarConsola();
                             System.out.println("Seleccione el campo a actualizar:");
                             System.out.println("1. Nombre");
                             System.out.println("2. direccion");
@@ -101,6 +116,7 @@ public class ConsoleAdapterFarmacia {
 
 
                             int campo = validadores.rangeValidator(1, 8);
+                            scanner.nextLine();
 
                             switch (campo) {
                                 case 1:
@@ -139,9 +155,12 @@ public class ConsoleAdapterFarmacia {
                             }
                         }
                         updFarm.execute(FarmaciaActual);
+                        validadores.pausa();
+                        validadores.limpiarConsola();
                         
                         break;
                     case 4:
+                        validadores.limpiarConsola();
                         System.out.println("ingresa el codigo de la Farmacia");
                         int codigoID = scanner.nextInt();
 
@@ -153,14 +172,19 @@ public class ConsoleAdapterFarmacia {
                         } else {                                                                                                                                                                        
                             System.out.println("Farmacia no encontrado.");
                         }
+                        validadores.pausa();
+                        validadores.limpiarConsola();
                         
                         break;
                     case 5:
+                        validadores.limpiarConsola();
                         List<Farmacia> Farmacias = allFarm.execute();
                         for (Farmacia Farmacia2 : Farmacias) {
                             System.out.println("Id: " + Farmacia2.getIdf() + " NOMBRE: " + Farmacia2.getNombreFarmacia() + " DIRECCION: " + Farmacia2.getDireccionFarmacia() + " LONGITUD: " + Farmacia2.getLongFarmacia()+" CODIGO CIUDAD" + Farmacia2.getCodigoCiudadFarm() + " LOGO: "+ Farmacia2.getLogoFarmacia());
                             System.out.println("--------------------");
                         }
+                        validadores.pausa();
+                        validadores.limpiarConsola();
                         break;
                     case 6:
                         return;
@@ -169,6 +193,7 @@ public class ConsoleAdapterFarmacia {
                 }
                 
             }
+            scanner.close();
 
         }
 

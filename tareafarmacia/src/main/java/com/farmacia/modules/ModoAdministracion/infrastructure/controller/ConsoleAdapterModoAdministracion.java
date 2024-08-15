@@ -34,33 +34,51 @@ public class ConsoleAdapterModoAdministracion {
     public void StartModoAdministracion(){
         boolean Bandera = true;
         Scanner scanner = new Scanner(System.in);
+        String titulo = """
+                
+        █▀▄▀█ █▀▀ █▄░█ █░█   █░█ █ ▄▀█   █▀▄ █▀▀   ▄▀█ █▀▄ █▀▄▀█ █ █▄░█ █ █▀ ▀█▀ █▀█ ▄▀█ █▀▀ █ █▀█ █▄░█
+        █░▀░█ ██▄ █░▀█ █▄█   ▀▄▀ █ █▀█   █▄▀ ██▄   █▀█ █▄▀ █░▀░█ █ █░▀█ █ ▄█ ░█░ █▀▄ █▀█ █▄▄ █ █▄█ █░▀█
+
+                """;
         while (Bandera) {
+            validadores.limpiarConsola();
+            System.out.println(titulo);
             System.out.println("1. añadir modo de administracion \n2. eliminar modo de administracion \n3. actualizar modo de administracion \n4. buscar por id \n5. listar Unidades de Medidas\n6. salir");
             int opcion = validadores.rangeValidator(1, 6);
 
             switch (opcion) {
                 case 1:
+                    validadores.limpiarConsola();
                     System.out.println("ingrese el nombre del modo de administracion: ");
                     String nombre = scanner.nextLine();
                     
                     ModoAdministracion ModoAdministracion = new ModoAdministracion(nombre);
                     createmodo.execute(ModoAdministracion);
+                    validadores.pausa();
+                    validadores.limpiarConsola();
                     
                     break;
                 case 2:
+                    validadores.limpiarConsola();
                     System.out.println("ingresa el codigo del modo de administracion");
                     int codigoDel = scanner.nextInt();
                     delmodo.execute(codigoDel);
+                    validadores.pausa();
+                    validadores.limpiarConsola();
 
                     break;
                 case 3:
+                    validadores.limpiarConsola();
                     System.out.println("ingresa el codigo del modo de administracion");
                     int codigoUPd = scanner.nextInt();
 
                     updmodo.execute(codigoUPd);
+                    validadores.pausa();
+                    validadores.limpiarConsola();
                     
                     break;
                 case 4:
+                    validadores.limpiarConsola();
                     System.out.println("ingresa el codigo del modo de administracion");
                     int codigoID = scanner.nextInt();
 
@@ -72,14 +90,19 @@ public class ConsoleAdapterModoAdministracion {
                     } else {
                         System.out.println("modo de administracion no encontrado.");
                     }
+                    validadores.pausa();
+                    validadores.limpiarConsola();
                     
                     break;
                 case 5:
+                    validadores.limpiarConsola();
                     List<ModoAdministracion> ModoAdministracions = allmodo.execute();
                     for (ModoAdministracion ModoAdministracion2 : ModoAdministracions) {
                         System.out.println("ID: " + ModoAdministracion2.getIdma() + " Nombre: " + ModoAdministracion2.getDescripcion());
                         System.out.println("--------------------");
                     }
+                    validadores.pausa();
+                    validadores.limpiarConsola();
                     break;
                 case 6:
                     return;
@@ -88,6 +111,7 @@ public class ConsoleAdapterModoAdministracion {
             }
             
         }
+        scanner.close();
 
     }
     

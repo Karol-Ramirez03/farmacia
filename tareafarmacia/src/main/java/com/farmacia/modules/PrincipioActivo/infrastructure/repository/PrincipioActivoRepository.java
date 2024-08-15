@@ -26,6 +26,7 @@ public class PrincipioActivoRepository implements PrincipioActivoService {
         PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, principioActivo.getNombre());
             ps.executeUpdate();
+            System.out.println("principio activo creado con exito!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -38,6 +39,7 @@ public class PrincipioActivoRepository implements PrincipioActivoService {
         PreparedStatement ps = connection.prepareStatement(sql)){
             ps.setInt(1, idpa);
             ps.executeUpdate();
+            System.out.println("principio activo eliminado con exito!");
         } catch (SQLException e) {
            e.printStackTrace();
            System.out.println("codigo no encontrado");
@@ -89,12 +91,12 @@ public class PrincipioActivoRepository implements PrincipioActivoService {
         String sql = "UPDATE principio_activo SET nombre = ?  WHERE idpa = ?";
         try (Connection con = database.getConnection();
         PreparedStatement ps = con.prepareStatement(sql)) {
-            System.out.print("Ingrese el nombre de la unidadmedida: ");
+            System.out.print("Ingrese el nombre del principio activo: ");
             String nombre = scanner.nextLine();
             ps.setString(1, nombre);
             ps.setInt(2, idpa);
             ps.executeUpdate();
-            
+            System.out.println("principio activo actualizado con exito!");
         } catch (Exception e) {
             e.printStackTrace();
         }
