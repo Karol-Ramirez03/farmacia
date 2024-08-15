@@ -93,6 +93,7 @@ public class CiudadConsoleAdapter {
                     boolean actualizar = true;
 
                     while (actualizar) {
+                        validadores.limpiarConsola();
                         System.out.println("Seleccione el campo a actualizar:");
                         System.out.println("1. Nombre");
                         System.out.println("2. codigo de la region");
