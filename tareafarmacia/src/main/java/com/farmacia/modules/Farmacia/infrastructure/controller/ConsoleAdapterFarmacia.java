@@ -55,8 +55,8 @@ public class ConsoleAdapterFarmacia {
 
                 switch (opcion) {
                     case 1:
+                    try {
                         validadores.limpiarConsola();
-                        System.out.println(titulo);
                         System.out.println("ingrese el nombre de la Farmacia: ");
                         String nombreFarmacia = scanner.nextLine();
                         System.out.println("ingrese el direccion de la Farmacia: ");
@@ -74,22 +74,42 @@ public class ConsoleAdapterFarmacia {
 
                         Farmacia Farmacia = new Farmacia(nombreFarmacia, direccion ,lon,latitud,ciudad,logo);
                         createFarm.execute(Farmacia);
+                        
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        System.out.println("");
+                        System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELEVE A INTENTARLO");                
+                        validadores.pausa();
+                        StartFarmacia();
+                    }
+                        
                         System.out.println("");
                         validadores.pausa();
                         validadores.limpiarConsola();
                         
                         break;
                     case 2:
+                    try {
                         validadores.limpiarConsola();
                         System.out.println("ingresa el id del Farmacia");
                         int codigoDel = scanner.nextInt();
                         delFarm.execute(codigoDel);
+                        
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        System.out.println("");
+                        System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELEVE A INTENTARLO");                
+                        validadores.pausa();
+                        StartFarmacia();
+                    }
+                        
                         validadores.pausa();
                         validadores.limpiarConsola();
 
                         break;
 
                     case 3:
+                      try {
                         validadores.limpiarConsola();
                         System.out.println("ingresa el id del Farmacia");
                         int codigoUPd = scanner.nextInt();
@@ -155,23 +175,42 @@ public class ConsoleAdapterFarmacia {
                             }
                         }
                         updFarm.execute(FarmaciaActual);
+                            
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            System.out.println("");
+                            System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELEVE A INTENTARLO");                
+                            validadores.pausa();
+                            StartFarmacia();
+                        }
+                        
                         validadores.pausa();
                         validadores.limpiarConsola();
                         
                         break;
                     case 4:
-                        validadores.limpiarConsola();
-                        System.out.println("ingresa el codigo de la Farmacia");
-                        int codigoID = scanner.nextInt();
+                        try {
+                            validadores.limpiarConsola();
+                            System.out.println("ingresa el codigo de la Farmacia");
+                            int codigoID = scanner.nextInt();
 
-                        Optional<Farmacia> td = idFarm.execute(codigoID);
-                        
-                        if (td.isPresent()) {
-                            Farmacia ptd = td.get();
-                            System.out.println("Id: " + ptd.getIdf() + " NOMBRE: " + ptd.getNombreFarmacia() + " DIRECCION: " + ptd.getDireccionFarmacia() + " LONGITUD: " + ptd.getLongFarmacia()+" CODIGO CIUDAD" + ptd.getCodigoCiudadFarm() + " LOGO: "+ ptd.getLogoFarmacia());
-                        } else {                                                                                                                                                                        
-                            System.out.println("Farmacia no encontrado.");
+                            Optional<Farmacia> td = idFarm.execute(codigoID);
+                            
+                            if (td.isPresent()) {
+                                Farmacia ptd = td.get();
+                                System.out.println("Id: " + ptd.getIdf() + " NOMBRE: " + ptd.getNombreFarmacia() + " DIRECCION: " + ptd.getDireccionFarmacia() + " LONGITUD: " + ptd.getLongFarmacia()+" CODIGO CIUDAD" + ptd.getCodigoCiudadFarm() + " LOGO: "+ ptd.getLogoFarmacia());
+                            } else {                                                                                                                                                                        
+                                System.out.println("Farmacia no encontrado.");
+                            }
+                            
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            System.out.println("");
+                            System.out.println("PROBLEMAS AL INGRESAR DATOS, VUELEVE A INTENTARLO");                
+                            validadores.pausa();
+                            StartFarmacia();
                         }
+                        
                         validadores.pausa();
                         validadores.limpiarConsola();
                         
